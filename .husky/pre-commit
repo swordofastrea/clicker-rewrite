@@ -1,0 +1,1 @@
+npx eslint --cache --config eslint.config.mjs --fix
