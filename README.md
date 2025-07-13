@@ -1,6 +1,6 @@
-# Flamework Template
+# Clicker Rewrite
 
-👋 Hey! This is a pre-configured template you can use for your projects that use [Flamework](https://fireboltofdeath.dev/docs/flamework/).
+A rewrite of one of my first projects.
 
 ## Usage
 
@@ -9,8 +9,6 @@ First, create the folder on your computer where you want your project to be stor
 Then, open a terminal at that directory and run the following commands:
 
 ```console
-npx degit rbxts-flamework/template
+npx degit swordofastrea/clicker-rewrite
 npm i
 ```
-
-That's it! The template has been installed. For further information on how to use Flamework in your project, please see [here](https://fireboltofdeath.dev/docs/flamework).
