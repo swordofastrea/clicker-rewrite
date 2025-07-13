@@ -38,7 +38,7 @@
 		"eslint-plugin-react": "7.35.0",
 		"eslint-plugin-roblox-ts": "0.0.36",
 		"eslint-plugin-spellcheck": "0.0.20",
-		"eslint-plugin-unicorn": "50.0.0",
+		"eslint-plugin-unicorn": "50.0.1",
 		"husky": "9.1.7",
 		"prettier": "3.6.2",
 		"rbxts-transformer-access": "1.1.2",
