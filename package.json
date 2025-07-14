@@ -7,14 +7,10 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "rbxtsc",
-		"dev": "concurrently \"pnpm run dev:start\" \"pnpm run dev:watch\"",
-		"dev:build": "rbxts-build build",
-		"dev:open": "rbxts-build open",
-		"dev:start": "rbxts-build start",
-		"dev:sync": "rbxts-build sync",
-		"dev:watch": "rbxts-build watch",
-		"prepare": "husky",
-		"watch": "rbxtsc -w"
+		"dev:start": "concurrently \"pnpm run dev:build\" \"pnpm run dev:watch\"",
+		"dev:build": "rbxtsc build",
+		"dev:watch": "rbxtsc -w",
+		"prepare": "husky"
 	},
 	"commitlint": {
 		"extends": [
@@ -46,7 +42,7 @@
 		"eslint-plugin-jest": "28.14.0",
 		"eslint-plugin-prettier": "5.5.1",
 		"eslint-plugin-react": "7.37.5",
-		"eslint-plugin-react-hooks": "5.2.0",
+		"eslint-plugin-react-hooks": "^5.2.0",
 		"eslint-plugin-roblox-ts": "0.0.36",
 		"eslint-plugin-spellcheck": "0.0.20",
 		"eslint-plugin-unicorn": "59.0.1",
