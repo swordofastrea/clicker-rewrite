@@ -26,10 +26,10 @@
 		"forceConsistentCasingInFileNames": true,
 		"plugins": [
 			{
-				"transform": "rbxts-transformer-flamework",
+				"transform": "rbxts-transformer-flamework"
 			},
 			{
-				"transform": "rbxts-transformer-services",
+				"transform": "rbxts-transformer-services"
 			},
 			{
 				"transform": "rbxts-transformer-access"

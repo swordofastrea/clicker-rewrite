@@ -7,8 +7,14 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "rbxtsc",
-		"watch": "rbxtsc -w",
-		"prepare": "husky"
+		"dev": "concurrently \"pnpm run dev:start\" \"pnpm run dev:watch\"",
+		"dev:build": "rbxts-build build",
+		"dev:open": "rbxts-build open",
+		"dev:start": "rbxts-build start",
+		"dev:sync": "rbxts-build sync",
+		"dev:watch": "rbxts-build watch",
+		"prepare": "husky",
+		"watch": "rbxtsc -w"
 	},
 	"commitlint": {
 		"extends": [
@@ -19,29 +25,48 @@
 		"@flamework/components": "1.3.1",
 		"@flamework/core": "1.3.1",
 		"@flamework/networking": "1.3.1",
+		"@rbxts/profile-store": "1.0.3",
+		"@rbxts/react": "17.2.3",
 		"@rbxts/react-roblox": "17.2.3"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "19.8.1",
 		"@commitlint/config-conventional": "19.8.1",
+		"@eslint/config-inspector": "1.1.0",
+		"@eslint/js": "9.31.0",
+		"@isentinel/eslint-config": "1.2.6",
 		"@rbxts/compiler-types": "3.0.0-types.0",
 		"@rbxts/types": "1.0.862",
 		"@typescript-eslint/eslint-plugin": "8.36.0",
 		"@typescript-eslint/parser": "8.36.0",
+		"concurrently": "9.2.0",
 		"eslint": "9.31.0",
 		"eslint-config-prettier": "10.1.5",
 		"eslint-plugin-antfu": "3.1.1",
+		"eslint-plugin-jest": "^28.14.0",
 		"eslint-plugin-prettier": "5.5.1",
 		"eslint-plugin-react": "7.37.5",
+		"eslint-plugin-react-hooks": "5.2.0",
 		"eslint-plugin-roblox-ts": "0.0.36",
 		"eslint-plugin-spellcheck": "0.0.20",
 		"eslint-plugin-unicorn": "59.0.1",
+		"globals": "16.3.0",
 		"husky": "9.1.7",
+		"npm": "11.4.2",
 		"prettier": "3.6.2",
 		"rbxts-transformer-access": "1.1.2",
 		"rbxts-transformer-flamework": "1.3.1",
 		"rbxts-transformer-services": "1.1.1",
 		"roblox-ts": "3.0.0",
-		"typescript": "5.8.3"
+		"typescript": "5.8.3",
+		"typescript-eslint": "8.36.0"
+	},
+	"rbxts-build": {
+		"names": {
+			"build": "dev:build",
+			"compile": "dev:compile",
+			"open": "dev:open",
+			"watch": "dev:watch"
+		}
 	}
 }
