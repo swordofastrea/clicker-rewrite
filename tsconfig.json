@@ -35,6 +35,5 @@
 				"transform": "rbxts-transformer-access"
 			}
 		]
-	},
-	"exclude": ["./eslint.config.ts", "./commitlint.config.ts"]
+	}
 }

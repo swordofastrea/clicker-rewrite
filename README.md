@@ -2,6 +2,10 @@
 
 A rewrite of one of my first projects.
 
+## Build Tools
+* [Rokit](https://github.com/rojo-rbx/rokit)
+* [npm](https://www.npmjs.com/package/npm)
+
 ## Usage
 
 First, create the folder on your computer where you want your project to be stored.
@@ -11,4 +15,5 @@ Then, open a terminal at that directory and run the following commands:
 ```console
 npx degit swordofastrea/clicker-rewrite
 npm i
+rokit install
 ```
