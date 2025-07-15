@@ -35,39 +35,44 @@ print_help() {
   echo "Usage: $0 [OPTIONS]"
   echo
   echo "Options:"
-  echo "  -b, --build       Build the project and starts watching for changes (clean, compile, build .rbxl, watch)"
-  echo "  -s, --serve       Start the Rojo server"
+  echo "  -c, --compile     Compile the project"
+  echo "  -b, --build       Build the .rbxl"
   echo "  -l, --launch      Launch Roblox Studio with game.rbxl"
-  echo "  -a, --all         Run build, serve, launch in order"
+  echo "  -s, --sync        Start the Rojo server and watch for changes"
+  echo "  -a, --all         Run all of the above commands in this order:"
+  echo "                      compile → build → launch → sync"
   echo "  -h, --help        Show this help message"
   echo
   echo "Example:"
   echo "  $0 --all"
 }
 
-build() {
-  echo "Cleaning ${out_dir}..."
+compile() {
+  echo "compiling project..."
   rm -rf "${out_dir:?}/"*
-  echo "Compiling project..."
-  npx rbxtsc -w "$project_root"
-  echo "Building .rbxl place file..."
-  rojo build -o "game.rbxl" "${project_root}default.project.json"
+  npx rbxtsc
 }
 
-serve() {
-  echo "Starting Rojo server..."
-  rojo serve "$project_root"
+build() {
+  echo "building file..."
+  rojo build --output "game.rbxl" "default.project.json"
 }
 
 launch() {
   echo "Launching Roblox Studio.."
-  start "" "RobloxStudioLauncher.exe" "$place_file"
+  start "./game.rbxl"
+}
+
+sync() {
+  echo "starting Rojo and watching for changes..."
+  npx concurrently --kill-others "rojo serve" "npx rbxtsc -w"
 }
 
 run_all() {
+  compile
   build
-  serve
   launch
+  sync
 }
 
 if [[ $# -eq 0 ]]; then
@@ -77,16 +82,20 @@ fi
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
+    -c|--compile)
+      compile
+      shift
+      ;;
     -b|--build)
       build
       shift
       ;;
-    -s|--serve)
-      serve
-      shift
-      ;;
     -l|--launch)
       launch
+      shift
+      ;;
+    -s|--sync)
+      sync
       shift
       ;;
     -a|--all)
