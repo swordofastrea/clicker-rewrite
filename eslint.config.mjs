@@ -7,18 +7,16 @@ export default style({
 	jsx: true,
 	languageOptions: {
 		parserOptions: {
-			project: ["./tsconfig.json", "./places/*/tsconfig.json", "tsconfig.build.json"],
+			project: ["./tsconfig.json"],
 			tsconfigRootDir: import.meta.dirname,
 		},
 	},
 	markdown: false,
-	react: true,
 	roblox: true,
 	rules: {
 		"antfu/consistent-list-newline": "off",
 		"curly": "off",
 		"max-lines-per-function": "off",
-		"react/no-create-ref": "off",
 		"roblox/lua-truthiness": "off",
 		"shopify/prefer-module-scope-constants": "off",
 		"style/jsx-sort-props": "off",
@@ -41,7 +39,4 @@ export default style({
 	spellCheck: true,
 	test: true,
 	type: "game",
-	typescript: {
-		tsconfigPath: "tsconfig.json",
-	},
 });
