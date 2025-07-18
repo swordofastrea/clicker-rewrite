@@ -4,6 +4,7 @@ set -e
 
 project_root="./"
 out_dir="${project_root}out"
+dist_dir="${project_root}dist"
 
 print_help() {
   echo "Usage: $0 [OPTIONS]"
@@ -24,6 +25,7 @@ print_help() {
 compile() {
   echo "Compiling project..."
   rm -rf "${out_dir:?}/"*
+  rm -rf "${dist_dir:?}/"*
   npx rbxtsc
   darklua process out dist -c darklua.json
 }
