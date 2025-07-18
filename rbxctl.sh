@@ -1,34 +1,8 @@
 #!/bin/bash
 
-# ----------------------------------------
-# Usage Guide
-# ----------------------------------------
-# This script helps you build and run your Roblox-TS project with Rojo.
-#
-# Commands:
-#   -b, --build       Clean the out directory, compile project, build the .rbxl, and watch for changes
-#   -s, --serve       Start the Rojo server (background process)
-#   -l, --launch      Launch Roblox Studio with the built game.rbxl
-#   -a, --all         Run all of the above commands in this order:
-#                       build → serve → launch → watch
-#   -h, --help        Show a brief usage summary
-#
-# Example usage:
-#   ./rbxctl.sh --all
-#   ./rbxctl.sh --build
-#   ./rbxctl.sh --watch
-#
-# Notes:
-# - The compiled Luau files go to the 'out' folder.
-# - game.rbxl is built in the root directory.
-# - Project always does rbxtsc -w
-#
-# ----------------------------------------
-
 set -e
 
-project_root="./"      # Root directory containing default.project.json & game.rbxl
-src_dir="${project_root}src"
+project_root="./"
 out_dir="${project_root}out"
 
 print_help() {
@@ -48,14 +22,15 @@ print_help() {
 }
 
 compile() {
-  echo "compiling project..."
+  echo "Compiling project..."
   rm -rf "${out_dir:?}/"*
   npx rbxtsc
+  darklua process out dist -c darklua.json
 }
 
 build() {
-  echo "building file..."
-  rojo build --output "game.rbxl" "default.project.json"
+  echo "Building file..."
+  rojo build --output "game.rbxl" "darklua.project.json"
 }
 
 launch() {
@@ -64,8 +39,8 @@ launch() {
 }
 
 sync() {
-  echo "starting Rojo and watching for changes..."
-  npx concurrently --kill-others "rojo serve" "npx rbxtsc -w"
+  echo "Starting Rojo and watching for changes..."
+  npx concurrently --kill-others "rbxtsc -w" "darklua process out dist -w -c darklua.json" "rojo serve darklua.project.json"
 }
 
 run_all() {

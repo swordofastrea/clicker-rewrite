@@ -6,12 +6,12 @@
 	"author": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "rbxctl.sh",
-		"dev:build": "rbxctl.sh -b",
-		"dev:compile": "rbxctl.sh -c",
-		"dev:launch": "rbxctl.sh -l",
-		"dev:start": "rbxctl.sh -a",
-		"dev:sync": "rbxctl.sh -s",
+		"dev": "./rbxctl.sh",
+		"dev:build": "./rbxctl.sh -b",
+		"dev:compile": "./rbxctl.sh -c",
+		"dev:launch": "./rbxctl.sh -l",
+		"dev:start": "./rbxctl.sh -a",
+		"dev:sync": "./rbxctl.sh -s",
 		"lint": "eslint",
 		"lint:fix": "eslint --fix",
 		"prepare": "husky"

@@ -1,8 +1,10 @@
 /node_modules
 /out
+/dist
 /include
 *.tsbuildinfo
 flamework.build
 .eslintcache
 *.rbxl
+*.rbxl.lock
 /*sourcemap.json
