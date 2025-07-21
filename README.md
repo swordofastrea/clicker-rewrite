@@ -13,7 +13,7 @@ First, create the folder on your computer where you want your project to be stor
 Then, open a terminal at that directory and run the following commands:
 
 ```console
-npx degit swordofastrea/clicker-rewrite
+git clone https://github.com/swordofastrea/clicker-rewrite.git
 npm i
 rokit install
 ```
