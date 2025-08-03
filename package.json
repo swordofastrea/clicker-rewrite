@@ -37,7 +37,7 @@
 		"@eslint/js": "9.31.0",
 		"@isentinel/eslint-config": "1.2.6",
 		"@rbxts/compiler-types": "3.0.0-types.0",
-		"@rbxts/types": "1.0.865",
+		"@rbxts/types": "1.0.867",
 		"@stylistic/eslint-plugin-ts": "4.4.1",
 		"@typescript-eslint/eslint-plugin": "8.38.0",
 		"@typescript-eslint/parser": "8.38.0",
