@@ -3,6 +3,7 @@
 set -e
 
 project_root="./"
+project_file="darklua.project.json"
 out_dir="${project_root}out"
 dist_dir="${project_root}dist"
 
@@ -42,7 +43,7 @@ launch() {
 
 sync() {
   echo "Starting Rojo and watching for changes..."
-  npx concurrently --kill-others "rbxtsc -w" "darklua process out dist -w -c darklua.json" "rojo serve darklua.project.json"
+  npx concurrently --kill-others "rbxtsc -w" "darklua process ${out_dir##*/} ${dist_dir##*/} -w -c darklua.json" "rojo serve ${project_file}"
 }
 
 run_all() {
