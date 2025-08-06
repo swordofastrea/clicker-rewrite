@@ -28,7 +28,7 @@ compile() {
   rm -rf "${out_dir:?}/"*
   rm -rf "${dist_dir:?}/"*
   npx rbxtsc
-  darklua process out dist -c darklua.json
+  darklua process out dist -c .darklua.json
 }
 
 build() {
@@ -43,7 +43,7 @@ launch() {
 
 sync() {
   echo "Starting Rojo and watching for changes..."
-  npx concurrently --kill-others "rbxtsc -w" "darklua process ${out_dir##*/} ${dist_dir##*/} -w -c darklua.json" "rojo serve ${project_file}"
+  npx concurrently --kill-others "rbxtsc -w" "darklua process ${out_dir##*/} ${dist_dir##*/} -w -c .darklua.json" "rojo serve ${project_file}"
 }
 
 run_all() {
