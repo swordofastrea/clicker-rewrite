@@ -1,0 +1,22 @@
+option Casing = Camel
+option TypesOutput = "remotes/types.luau"
+option ServerOutput = "remotes/server.luau"
+option ClientOutput = "remotes/client.luau"
+option Typescript = true
+
+scope DataToServer {
+    type Player = Instance(Player)
+    event ButtonClicked {
+    From: Client,
+    Type: Reliable,
+    Call: ManySync,
+    Data: Player
+
+    }
+    event Rebirth {
+        From: Client,
+        Type: Reliable,
+        Call: ManySync,
+        Data: Player
+    }
+}
