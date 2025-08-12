@@ -1,4 +1,4 @@
 [tools]
 rojo = "rojo-rbx/rojo@7.5.1"
 selene = "Kampfkarren/selene@0.29.0"
-darklua = "seaofvoices/darklua@0.16.0"
+darklua = "seaofvoices/darklua@0.17.0"
