@@ -41,6 +41,7 @@
 		},
 		"Workspace": {
 			"$className": "Workspace",
+			"$ignoreUnknownInstances": true,
 			"$path": "dist/workspace"
 		},
 		"HttpService": {
