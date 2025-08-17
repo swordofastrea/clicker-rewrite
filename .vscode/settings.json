@@ -3,10 +3,12 @@
 	"eslint.run": "onType",
 	"eslint.format.enable": true,
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"editor.formatOnSave": false,
+	"typescript.preferences.importModuleSpecifier": "shortest",
+	"editor.formatOnSave": true,
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit",
-		"source.organizeImports": "never"
+		"source.organizeImports": "never",
+		"source.removeUnusedImports": "always"
 	},
 	"eslint.rules.customizations": [
 		{ "rule": "style/*", "severity": "off", "fixable": true },
@@ -29,5 +31,8 @@
 		"yaml",
 		"toml",
 		"luau"
+	],
+	"eslint.workingDirectories": [
+		"src/**"
 	]
 }
