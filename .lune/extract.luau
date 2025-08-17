@@ -1,3 +1,4 @@
+--recycled script from last project for extracting assets
 --#selene: allow(incorrect_standard_library_use))
 local fs = require("@lune/fs")
 local process = require("@lune/process")
@@ -12,7 +13,7 @@ local placeInstance = roblox.deserializePlace(fs.readFile(placePath))
 local SERVICE_LOOKUP = {
 	ReplicatedStorage = "shared",
 	ServerScriptService = "server",
-	StarterPlayer = "client",
+	StarterPlayerScripts = "client",
 	Workspace = "workspace",
 }
 
@@ -50,16 +51,16 @@ local function saveInstance(path, instance)
 			saveInstance(dirPath, child)
 		end
 	elseif instance:IsA("Model") then
-		local modelData = roblox.serializeModel({ instance })
-		local filePath = path .. "/" .. instance.Name .. ".rbxm"
+		local modelData = roblox.serializeModel({ instance }, true)
+		local filePath = path .. "/" .. instance.Name .. ".rbxmx"
 		fs.writeFile(filePath, modelData)
 	elseif instance:IsA("LuaSourceContainer") then
 		local ext = getScriptExtension(instance)
 		local filePath = path .. "/" .. instance.Name .. ext
 		fs.writeFile(filePath, instance.Source)
 	else
-		local miscPartData = roblox.serializeModel({ instance })
-		local filePath = path .. "/" .. instance.Name .. ".rbxm"
+		local miscPartData = roblox.serializeModel({ instance }, true)
+		local filePath = path .. "/" .. instance.Name .. ".rbxmx"
 		fs.writeFile(filePath, miscPartData)
 	end
 end
