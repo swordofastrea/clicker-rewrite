@@ -24,15 +24,16 @@ print_help() {
 }
 
 compile() {
-  echo "Compiling project..."
+  echo "Compiling project.."
   rm -rf "${out_dir:?}/"*
   rm -rf "${dist_dir:?}/"*
   npx rbxtsc
+  cp -r "${out_dir}/workspace" "${dist_dir}/workspace"
   darklua process out dist -c .darklua.json
 }
 
 build() {
-  echo "Building file..."
+  echo "Building file.."
   rojo build --output "game.rbxl" "darklua.project.json"
 }
 
@@ -42,7 +43,7 @@ launch() {
 }
 
 sync() {
-  echo "Starting Rojo and watching for changes..."
+  echo "Starting Rojo and watching for changes.."
   npx concurrently --kill-others "rbxtsc -w" "darklua process ${out_dir##*/} ${dist_dir##*/} -w -c .darklua.json" "rojo serve ${project_file}"
 }
 
