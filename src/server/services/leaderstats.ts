@@ -29,7 +29,7 @@ export class Leaderstats implements OnStart {
 			updatedStat.Value = value;
 			return updatedStat.Value;
 		}
-		
+
 		error("Leaderstats not found");
 	}
 }

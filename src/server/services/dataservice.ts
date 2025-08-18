@@ -71,9 +71,7 @@ export class DataService implements OnStart {
 		const validValuesGuard = Flamework.createGuard<keyof ProfileTemplate>();
 		if (playerProfile && validValuesGuard(stat)) {
 			playerProfile.Data[stat] = value;
-			this.leaderstats.UpdateLeaderstats(player, stat, value).catch((err: unknown) => {
-				error(err);
-			});
+			this.leaderstats.UpdateLeaderstats(player, stat, value).catch((err: unknown) => error(err));
 		}
 
 		return "No update made, either player profile was unsuccessfully retrieved or stat was invalid.";
