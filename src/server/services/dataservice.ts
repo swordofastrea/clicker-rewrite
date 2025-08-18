@@ -12,12 +12,12 @@ interface ProfileTemplate {
 }
 
 @Service()
-export class DataHandler implements OnStart {
+export class DataService implements OnStart {
 	private readonly profileTemplate: ProfileTemplate = {
 		Clicks: 0,
 		Rebirths: 0,
 	};
-	private readonly DataStores = ProfileStore.New("PlayerData", this.profileTemplate);
+	private readonly DataService = ProfileStore.New("PlayerData", this.profileTemplate);
 	private readonly Profiles: Map<number, Profile<ProfileTemplate>> = new Map<
 		number,
 		Profile<ProfileTemplate>
@@ -42,7 +42,7 @@ export class DataHandler implements OnStart {
 	}
 
 	public async LoadPlayerProfile(player: Player): Promise<void> {
-		const profile = this.DataStores.StartSessionAsync("Player_" + player.UserId);
+		const profile = this.DataService.StartSessionAsync("Player_" + player.UserId);
 		this.Profiles.set(player.UserId, profile);
 		profile.Reconcile();
 		print("Loaded profile for ", player.Name, " with data: ", profile.Data);
@@ -63,7 +63,7 @@ export class DataHandler implements OnStart {
 			return playerProfile.Data;
 		}
 
-		return error("Player profile not found");
+		error("Player profile not found");
 	}
 
 	public async UpdatePlayerData(player: Player, stat: string, value: number): Promise<string> {
@@ -75,6 +75,7 @@ export class DataHandler implements OnStart {
 				error(err);
 			});
 		}
+
 		return "No update made, either player profile was unsuccessfully retrieved or stat was invalid.";
 	}
 }
