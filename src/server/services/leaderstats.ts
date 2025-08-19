@@ -22,14 +22,17 @@ export class Leaderstats implements OnStart {
 		});
 	}
 
-	public async UpdateLeaderstats(player: Player, stat: string, value: number): Promise<number> {
-		const leaderstats = player.FindFirstChild("leaderstats");
-		if (leaderstats) {
-			const updatedStat = leaderstats.FindFirstChild(stat) as IntValue;
-			updatedStat.Value = value;
-			return updatedStat.Value;
-		}
+	public UpdateLeaderstats(player: Player, stat: string, value: number): string {
+		try {
+			const leaderstats = player.FindFirstChild("leaderstats");
+			if (leaderstats) {
+				const updatedStat = leaderstats.FindFirstChild(stat) as IntValue;
+				updatedStat.Value = value;
+			}
 
-		error("Leaderstats not found");
+			return `Successfully updated leaderstats for player ${player.Name} for stat ${stat} to ${value}`;
+		} catch (err) {
+			return error(`Failed to update leaderstats for player ${player.Name}: ${err}`);
+		}
 	}
 }
