@@ -69,7 +69,7 @@ export class DataService implements OnStart {
 			const playerProfile = this.Profiles.get(player.UserId)! as Profile<ProfileTemplate>;
 			return playerProfile.Data;
 		} catch (err) {
-			return error(`Player profile not found for ${player.Name}: ${err}`);
+			error(`Player profile not found for ${player.Name}: ${err}`);
 		}
 	}
 
@@ -83,7 +83,7 @@ export class DataService implements OnStart {
 
 			return `Updated leaderstats for ${player.Name} for stat ${stat} to ${value}`;
 		} catch (err) {
-			return error(`Failed to update leaderstats for ${player.Name}: ${err}`);
+			error(`Failed to update leaderstats for ${player.Name}: ${err}`);
 		}
 	}
 }

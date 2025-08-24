@@ -32,7 +32,7 @@ export class Leaderstats implements OnStart {
 
 			return `Successfully updated leaderstats for player ${player.Name} for stat ${stat} to ${value}`;
 		} catch (err) {
-			return error(`Failed to update leaderstats for player ${player.Name}: ${err}`);
+			error(`Failed to update leaderstats for player ${player.Name}: ${err}`);
 		}
 	}
 }
