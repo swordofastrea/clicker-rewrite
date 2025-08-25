@@ -76,11 +76,14 @@ export class DataService implements OnStart {
 	public UpdatePlayerLeaderstatData(player: Player, stat: string, value: number): string {
 		try {
 			const playerProfile = this.Profiles.get(player.UserId);
-			if (playerProfile && this.validValuesGuard(stat)) {
-				playerProfile.Data[stat] = value;
-				this.leaderstats.UpdateLeaderstats(player, stat, value);
+			if (!playerProfile) {
+				return `Player profile not found for ${player.Name}`;
 			}
-
+			if (!this.validValuesGuard(stat)) {
+				return `Invalid updated stat: ${stat}`;
+			}
+			playerProfile.Data[stat] = value;
+			this.leaderstats.UpdateLeaderstats(player, stat, value);
 			return `Updated leaderstats for ${player.Name} for stat ${stat} to ${value}`;
 		} catch (err) {
 			error(`Failed to update leaderstats for ${player.Name}: ${err}`);
