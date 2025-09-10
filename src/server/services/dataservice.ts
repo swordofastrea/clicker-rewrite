@@ -79,9 +79,11 @@ export class DataService implements OnStart {
 			if (!playerProfile) {
 				return `Player profile not found for ${player.Name}`;
 			}
+
 			if (!this.validValuesGuard(stat)) {
 				return `Invalid updated stat: ${stat}`;
 			}
+
 			playerProfile.Data[stat] = value;
 			this.leaderstats.UpdateLeaderstats(player, stat, value);
 			return `Updated leaderstats for ${player.Name} for stat ${stat} to ${value}`;

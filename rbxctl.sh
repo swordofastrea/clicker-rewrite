@@ -3,7 +3,7 @@
 set -e
 
 project_root="./"
-project_file="darklua.project.json"
+project_file="default.project.json"
 out_dir="${project_root}out"
 dist_dir="${project_root}dist"
 
@@ -34,7 +34,7 @@ compile() {
 
 build() {
   echo "Building file.."
-  rojo build --output "game.rbxl" "darklua.project.json"
+  rojo build --output "game.rbxl" ${project_file}
 }
 
 launch() {
