@@ -19,3 +19,5 @@ git clone https://github.com/swordofastrea/clicker-rewrite.git
 npm i
 rokit install
 ```
+
+Make sure Roblox Studio is installed on Windows or macOS, and if you’re using Linux, Vinegar (preferably through Flatpak) so you can use rbxctl.
