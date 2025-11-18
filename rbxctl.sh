@@ -6,6 +6,7 @@ project_root="./"
 project_file="default.project.json"
 out_dir="${project_root}out"
 dist_dir="${project_root}dist"
+game_file="game.rbxl"
 
 print_help() {
   echo "Usage: $0 [OPTIONS]"
@@ -34,13 +35,43 @@ compile() {
 
 build() {
   echo "Building file.."
-  rojo build --output "game.rbxl" ${project_file}
+  rojo build --output ${game_file} ${project_file}
 }
 
 launch() {
-  echo "Launching Roblox Studio.."
-  start "./game.rbxl"
+    raw_os="$(uname -s)"
+    case "$raw_os" in
+        Linux*)   os="Linux" ;;
+        Darwin*)  os="macOS" ;;
+        MINGW*|MSYS*|CYGWIN*|Windows_NT) os="Windows" ;;
+        *)        os="" ;;
+    esac
+
+    if [[ -z "$os" ]]; then
+        echo -e "Unsupported OS: $raw_os\nThis application supports only Windows and MacOS with Roblox Studio or Linux with Vinegar.\nIf you believe this is an error or want to request future support, please submit an issue here:\nhttps://github.com/swordofastrea/clicker-rewrite/issues"
+        return 1
+    fi
+    echo "Operating System: $os"
+    echo "Launching Roblox Studio.."
+    case "$os" in
+        Linux)
+            if flatpak info org.vinegarhq.Vinegar >/dev/null 2>&1; then
+                flatpak run org.vinegarhq.Vinegar "$PWD/${game_file}"
+            else
+                echo "Flatpak Vinegar not found. Falling back to xdg.."
+                xdg-open "${game_file}" 2>&1 &
+            fi
+            ;;
+        macOS)
+            open "${game_file}"
+            ;;
+        Windows)
+            start "${game_file}"
+            ;;
+    esac
 }
+
+
 
 sync() {
   echo "Starting Rojo and watching for changes.."
