@@ -55,12 +55,7 @@ launch() {
     echo "Launching Roblox Studio.."
     case "$os" in
         Linux)
-            if flatpak info org.vinegarhq.Vinegar >/dev/null 2>&1; then
-                flatpak run org.vinegarhq.Vinegar "$PWD/${game_file}"
-            else
-                echo "Flatpak Vinegar not found. Falling back to xdg.."
-                xdg-open "${game_file}" 2>&1 &
-            fi
+            xdg-open "${game_file}" 2>&1 &
             ;;
         macOS)
             open "${game_file}"
