@@ -11,7 +11,7 @@
 	"automerge": true,
 	"automergeType": "pr",
 	"requiredStatusChecks": ["ci / test"],
-	"baseBranches": ["^(?!renovate/).*$"],
+	"baseBranches": ["main", "develop"],
 
 	"packageRules": [
 		{
