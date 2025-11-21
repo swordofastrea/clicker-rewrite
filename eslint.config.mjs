@@ -8,7 +8,6 @@ export default style({
 	jsx: true,
 	languageOptions: {
 		parserOptions: {
-			project: ["./tsconfig.json"],
 			tsconfigRootDir: import.meta.dirname,
 		},
 	},
