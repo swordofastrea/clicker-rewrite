@@ -1,6 +1,6 @@
 {
 	"name": "clicker rewrite",
-	"globIgnorePaths": ["**/package.json", "**/tsconfig.json"],
+	"globIgnorePaths": ["**/package.json", "**/tsconfig.json", "**/*storybook.ts", "**/*story.luau"],
 	"tree": {
 		"$className": "DataModel",
 		"HttpService": {
@@ -50,9 +50,8 @@
 		},
 		"Workspace": {
 			"$className": "Workspace",
-			"$properties": {
-				"FilteringEnabled": true
-			}
+			"$ignoreUnknownInstances": true,
+			"$path": "dist/workspace"
 		}
 	}
 }
