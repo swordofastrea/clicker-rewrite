@@ -1,7 +1,7 @@
 [tools]
 rojo = "rojo-rbx/rojo@7.6.1"
 selene = "Kampfkarren/selene@0.29.0"
-darklua = "seaofvoices/darklua@0.17.1"
+darklua = "seaofvoices/darklua@0.17.2"
 blink = "1Axen/blink@0.18.1"
 lune = "lune-org/lune@0.10.4"
 stylua = "johnnymorganz/stylua@2.2.0"
