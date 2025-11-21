@@ -8,7 +8,7 @@
 		"security:minimumReleaseAgeNpm"
 	],
 	"automerge": true,
-	"automergeType": "pr",
+	"automergeType": "branch",
 	"baseBranchPatterns": ["main", "develop"],
 	"packageRules": [
 		{
