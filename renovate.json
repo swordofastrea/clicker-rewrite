@@ -7,12 +7,9 @@
 		"helpers:pinGitHubActionDigests",
 		"security:minimumReleaseAgeNpm"
 	],
-
 	"automerge": true,
 	"automergeType": "pr",
-	"requiredStatusChecks": ["ci / test"],
-	"baseBranches": ["main", "develop"],
-
+	"baseBranchPatterns": ["main", "develop"],
 	"packageRules": [
 		{
 			"matchPackageNames": ["@rbxts/types"],
