@@ -1,8 +1,9 @@
+import markdown from "@eslint/markdown";
 import style from "@isentinel/eslint-config";
 
 export default style({
 	gitignore: true,
-	ignores: ["node_modules", "places/*/out", "places/*/dist"],
+	ignores: ["node_modules", "out", "dist"],
 	jsdoc: false,
 	jsx: true,
 	languageOptions: {
@@ -11,7 +12,13 @@ export default style({
 			tsconfigRootDir: import.meta.dirname,
 		},
 	},
-	markdown: false,
+	overrides: [
+		{
+			extends: ["plugin:markdown/recommended"],
+			files: ["**/*.md"],
+			plugins: { markdown },
+		},
+	],
 	roblox: true,
 	rules: {
 		"antfu/consistent-list-newline": "off",

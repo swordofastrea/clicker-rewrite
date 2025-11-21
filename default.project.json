@@ -2,14 +2,16 @@
 	"name": "clicker rewrite",
 	"globIgnorePaths": [
 		"**/package.json",
-		"**/tsconfig.json"
+		"**/tsconfig.json",
+		"**/*storybook.ts",
+		"**/*story.luau"
 	],
 	"tree": {
 		"$className": "DataModel",
 		"ServerScriptService": {
 			"$className": "ServerScriptService",
 			"TS": {
-				"$path": "out/server"
+				"$path": "dist/server"
 			}
 		},
 		"ReplicatedStorage": {
@@ -27,7 +29,7 @@
 				}
 			},
 			"TS": {
-				"$path": "out/shared"
+				"$path": "dist/shared"
 			}
 		},
 		"StarterPlayer": {
@@ -35,15 +37,14 @@
 			"StarterPlayerScripts": {
 				"$className": "StarterPlayerScripts",
 				"TS": {
-					"$path": "out/client"
+					"$path": "dist/client"
 				}
 			}
 		},
 		"Workspace": {
 			"$className": "Workspace",
-			"$properties": {
-				"FilteringEnabled": true
-			}
+			"$ignoreUnknownInstances": true,
+			"$path": "dist/workspace"
 		},
 		"HttpService": {
 			"$className": "HttpService",
