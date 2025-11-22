@@ -9,7 +9,7 @@
 	],
 	"automerge": true,
 	"automergeType": "branch",
-	"baseBranchPatterns": ["main", "develop"],
+	"baseBranchPatterns": ["develop"],
 	"packageRules": [
 		{
 			"matchPackageNames": ["@rbxts/types"],
