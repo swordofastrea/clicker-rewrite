@@ -1,7 +1,6 @@
 {
 	"generator": { "name": "retain_lines" },
 	"rules": [
-		"remove_spaces",
 		"remove_assertions",
 		"remove_compound_assignment",
 		"remove_debug_profiling",
@@ -9,29 +8,33 @@
 		"remove_method_definition",
 		"convert_index_to_field",
 		"remove_nil_declaration",
+		"compute_expression",
+		"remove_unused_if_branch",
+		"remove_unused_while",
+		"filter_after_early_return",
+		"remove_empty_do",
 		"remove_function_call_parens",
 		"group_local_assignment",
 		"convert_local_function_to_assign",
 		"remove_types",
 		{
-			"rule": "remove_comments",
-			"except": ["^!"]
+			"rule": "rename_variables",
+			"include_functions": true
 		},
 		{
 			"rule": "convert_require",
 			"current": "path",
-			"target": {
-				"name": "roblox"
-			}
+			"target": { "name": "roblox" }
+		},
+		{
+			"rule": "remove_comments",
+			"except": ["^!"]
 		},
 		{
 			"rule": "append_text_comment",
 			"text": "!native",
 			"location": "start"
 		},
-		{
-			"rule": "rename_variables",
-			"include_functions": true
-		}
+		"remove_spaces"
 	]
 }

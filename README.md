@@ -23,7 +23,6 @@ First, clone the repository and install the dependencies.
 ```console
 git clone https://github.com/swordofastrea/clicker-rewrite.git
 npm i
-rokit install
 ```
 
 After installing all the dependencies, launch rbxctl.sh to start the development
