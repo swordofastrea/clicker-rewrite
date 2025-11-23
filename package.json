@@ -38,7 +38,7 @@
 		"@isentinel/eslint-config": "4.3.1",
 		"@rbxts/compiler-types": "3.0.0-types.0",
 		"@rbxts/pretty-react-hooks": "0.6.4",
-		"@rbxts/types": "1.0.892",
+		"@rbxts/types": "1.0.894",
 		"@stylistic/eslint-plugin-ts": "4.4.1",
 		"@typescript-eslint/eslint-plugin": "8.47.0",
 		"@typescript-eslint/parser": "8.47.0",
