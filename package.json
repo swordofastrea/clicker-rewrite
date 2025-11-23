@@ -6,9 +6,8 @@
 	"author": "swordofastrea",
 	"type": "module",
 	"scripts": {
-		"dev": "./rbxctl.sh",
-		"dev:build": "./rbxctl.sh -b",
 		"dev:compile": "./rbxctl.sh -c",
+		"dev:build": "./rbxctl.sh -b",
 		"dev:launch": "./rbxctl.sh -l",
 		"dev:start": "./rbxctl.sh -a",
 		"dev:sync": "./rbxctl.sh -s",
@@ -17,7 +16,9 @@
 		"prepare": "husky"
 	},
 	"commitlint": {
-		"extends": ["@commitlint/config-conventional"]
+		"extends": [
+			"@commitlint/config-conventional"
+		]
 	},
 	"dependencies": {
 		"@flamework/components": "1.3.2",
