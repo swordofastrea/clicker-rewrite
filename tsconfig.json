@@ -1,4 +1,5 @@
 {
+	"extends": "@isentinel/tsconfig/roblox",
 	"compilerOptions": {
 		"incremental": true,
 		"tsBuildInfoFile": "out/tsconfig.tsbuildinfo",

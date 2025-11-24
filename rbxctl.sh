@@ -28,6 +28,8 @@ compile() {
   echo "Compiling project.."
   rm -rf "${out_dir:?}/"*
   rm -rf "${dist_dir:?}/"*
+  mkdir -p ${out_dir}
+  mkdir -p ${dist_dir}
   npx rbxtsc
   cp -r "${out_dir}/workspace" "${dist_dir}/workspace"
   darklua process out dist -c .darklua.json

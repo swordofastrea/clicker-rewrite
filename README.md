@@ -4,9 +4,10 @@ A rewrite of one of my first projects.
 
 ## Dependencies
 
-- [Rokit](https://github.com/rojo-rbx/rokit)
-- [npm](https://www.npmjs.com/package/npm)
 - [git](https://github.com/git-guides/install-git)
+- [npm](https://www.npmjs.com/package/npm)
+- [pnpm](https://www.npmjs.com/package/pnpm)
+- [Rokit](https://github.com/rojo-rbx/rokit)
 
 ### Windows/MacOS
 
@@ -22,7 +23,7 @@ First, clone the repository and install the dependencies.
 
 ```console
 git clone https://github.com/swordofastrea/clicker-rewrite.git
-npm i
+pnpm i
 ```
 
 After installing all the dependencies, launch rbxctl.sh to start the development
