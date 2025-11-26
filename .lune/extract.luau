@@ -13,7 +13,7 @@ local placeInstance = roblox.deserializePlace(fs.readFile(placePath))
 local SERVICE_LOOKUP = {
 	ReplicatedStorage = "shared",
 	ServerScriptService = "server",
-	StarterPlayerScripts = "client",
+	StarterPlayer = "client",
 	Workspace = "workspace",
 }
 
@@ -72,8 +72,19 @@ for serviceName, folderName in pairs(SERVICE_LOOKUP) do
 	if service then
 		local servicePath = outputPath .. "/" .. folderName
 		fs.writeDir(servicePath)
-		for _, child in ipairs(service:GetChildren()) do
-			saveInstance(servicePath, child)
+
+		-- Special handling for StarterPlayer to extract StarterPlayerScripts
+		if serviceName == "StarterPlayer" then
+			local starterPlayerScripts = service:FindFirstChild("StarterPlayerScripts")
+			if starterPlayerScripts then
+				for _, child in ipairs(starterPlayerScripts:GetChildren()) do
+					saveInstance(servicePath, child)
+				end
+			end
+		else
+			for _, child in ipairs(service:GetChildren()) do
+				saveInstance(servicePath, child)
+			end
 		end
 	end
 end

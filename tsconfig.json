@@ -30,12 +30,11 @@
 				"transform": "rbxts-transformer-flamework"
 			},
 			{
-				"transform": "rbxts-transformer-services"
+				"transform": "rbxts-transform-debug"
 			},
 			{
-				"transform": "rbxts-transformer-access"
+				"transform": "rbxts-transform-env"
 			}
 		]
-	},
-	"exclude": ["eslint.config.ts"]
+	}
 }

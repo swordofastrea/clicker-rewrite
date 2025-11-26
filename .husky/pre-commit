@@ -1,1 +1,1 @@
-pnpm run lint:fix
+pnpm eslint --cache --config eslint.config.ts --fix

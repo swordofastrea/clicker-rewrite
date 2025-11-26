@@ -10,6 +10,8 @@ export default isentinel({
 			tsconfigRootDir: import.meta.dirname,
 		},
 	},
+	pnpm: true,
+	react: true,
 	roblox: true,
 	rules: {
 		"antfu/consistent-list-newline": "off",
