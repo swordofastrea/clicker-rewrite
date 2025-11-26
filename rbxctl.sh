@@ -19,8 +19,8 @@ print_help() {
   echo "Usage: $0 <project_file> <options>"
   echo
   echo "Options:"
-  echo "  -b, --compile     Compile the project"
-  echo "  -l, --launch      Launch Roblox Studio with game.rbxl"
+  echo "  -b, --build       Build the project"
+  echo "  -l, --launch      Launch Roblox Studio with the built file"
   echo "  -a, --all         Run both commands in order:"
   echo "                      compile → launch"
   echo "  -h, --help        Show this help message"
