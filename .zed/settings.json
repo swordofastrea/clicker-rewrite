@@ -1,0 +1,24 @@
+{
+	"languages": {
+		"TypeScript": {
+			"format_on_save": "on",
+			"code_actions_on_format": {
+				"source.fixAll.eslint": true
+			}
+		},
+		"TSX": {
+			"format_on_save": "on",
+			"code_actions_on_format": {
+				"source.fixAll.eslint": true
+			}
+		},
+		"Luau": {
+			"formatter": {
+				"external": {
+					"command": "stylua",
+					"arguments": ["--stdin-filepath", "{buffer_path}"]
+				}
+			}
+		}
+	}
+}
