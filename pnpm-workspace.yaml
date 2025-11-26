@@ -22,7 +22,6 @@ catalogs:
     "@flamework/core": 1.3.2
     "@rbxts/lyra": 0.6.0
     "@rbxts/pretty-react-hooks": 0.6.4
-    "@rbxts/profile-store": 1.0.3
     "@rbxts/react": 17.2.3
     "@rbxts/react-roblox": 17.2.3
     "@rbxts/ui-labs": 2.4.2

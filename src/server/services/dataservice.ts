@@ -1,85 +1,54 @@
 import type { OnStart } from "@flamework/core";
 import { Flamework, Service } from "@flamework/core";
-import type { Profile } from "@rbxts/profile-store";
-import ProfileStore from "@rbxts/profile-store";
+import Lyra from "@rbxts/lyra";
 import { Players } from "@rbxts/services";
 
 import type { Leaderstats } from "./leaderstats";
 
-interface ProfileTemplate {
+export interface ProfileTemplate {
 	Clicks: number;
 	Rebirths: number;
 }
 
 @Service()
 export class DataService implements OnStart {
-	private readonly Profiles: Map<number, Profile<ProfileTemplate>> = new Map<number, Profile<ProfileTemplate>>();
 	private readonly profileTemplate: ProfileTemplate = {
 		Clicks: 0,
 		Rebirths: 0,
 	};
-	private readonly profileStore = ProfileStore.New("PlayerData", this.profileTemplate);
-	private readonly validValuesGuard = Flamework.createGuard<keyof ProfileTemplate>();
+	private readonly store = Lyra.createPlayerStore({
+		name: "PlayerData",
+		schema: Flamework.createGuard<ProfileTemplate>(),
+		template: this.profileTemplate,
+	});
 
 	constructor(private readonly leaderstats: Leaderstats) {}
 
 	public onStart(): void {
 		Players.PlayerAdded.Connect((player: Player) => {
-			this.LoadPlayerProfile(player);
+			this.store.loadAsync(player);
+			print(`Loaded profile ${this.store.getAsync(player)} for player ${player.Name}`);
 		});
 		Players.PlayerRemoving.Connect((player: Player) => {
-			this.SavePlayerProfile(player);
+			this.store.unloadAsync(player);
+			print(`Unloaded profile ${this.store.getAsync(player)} for player ${player.Name}`);
 		});
 		for (const player of Players.GetPlayers()) {
-			this.LoadPlayerProfile(player);
+			this.store.loadAsync(player);
 		}
+
+		game.BindToClose(() => {
+			this.store.closeAsync();
+		});
 	}
 
-	public LoadPlayerProfile(player: Player): void {
+	public UpdatePlayerData(player: Player, stat: keyof ProfileTemplate, value: number): string {
 		try {
-			const profile = this.profileStore.StartSessionAsync(`Player_${player.UserId}`);
-			this.Profiles.set(player.UserId, profile);
-			profile.Reconcile();
-			print("Loaded profile for player ", player.Name, " with data: ", profile.Data);
-		} catch (err) {
-			player.Kick(`Failed to load profile for player ${player.Name}: ${err}. Please try rejoining.`);
-		}
-	}
+			this.store.updateAsync(player, (data) => {
+				data[stat] = value;
+				return true;
+			});
 
-	public SavePlayerProfile(player: Player): void {
-		try {
-			const profile = this.Profiles.get(player.UserId);
-			if (profile) {
-				profile.EndSession();
-				print("Saved profile for player ", player.Name, " with data: ", profile.Data);
-				this.Profiles.delete(player.UserId);
-			}
-		} catch (err) {
-			error(`Failed to save profile for player ${player.Name}: ${err}. Data may be lost.`);
-		}
-	}
-
-	public GetPlayerProfile(player: Player): ProfileTemplate {
-		try {
-			const playerProfile = this.Profiles.get(player.UserId)! as Profile<ProfileTemplate>;
-			return playerProfile.Data;
-		} catch (err) {
-			error(`Player profile not found for ${player.Name}: ${err}`);
-		}
-	}
-
-	public UpdatePlayerLeaderstatData(player: Player, stat: string, value: number): string {
-		try {
-			const playerProfile = this.Profiles.get(player.UserId);
-			if (!playerProfile) {
-				return `Player profile not found for ${player.Name}`;
-			}
-
-			if (!this.validValuesGuard(stat)) {
-				return `Invalid updated stat: ${stat}`;
-			}
-
-			playerProfile.Data[stat] = value;
 			this.leaderstats.UpdateLeaderstats(player, stat, value);
 			return `Updated leaderstats for ${player.Name} for stat ${stat} to ${value}`;
 		} catch (err) {

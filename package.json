@@ -2,19 +2,19 @@
 	"name": "clicker-rewrite",
 	"version": "1.0.0",
 	"description": "this is the greatest plan",
-	"license": "ISC",
 	"author": "swordofastrea",
 	"type": "module",
 	"scripts": {
-		"dev:build": "./rbxctl.sh -b",
-		"dev:compile": "./rbxctl.sh -c",
-		"dev:launch": "./rbxctl.sh -l",
-		"dev:start": "./rbxctl.sh -a",
-		"dev:sync": "./rbxctl.sh -s",
+		"dev:build": "./rbxctl.sh default.project.json -b",
+		"dev:launch": "./rbxctl.sh default.project.json -l",
+		"dev:start": "./rbxctl.sh default.project.json -a",
 		"postinstall": "pnpm self-update && rokit self-update && rokit install && lune setup",
 		"lint": "eslint",
 		"lint:fix": "eslint --fix",
-		"prepare": "husky"
+		"prepare": "husky",
+		"prod:build": "./rbxctl.sh production.project.json -b",
+		"prod:launch": "./rbxctl.sh production.project.json -l",
+		"prod:start": "./rbxctl.sh production.project.json -s"
 	},
 	"commitlint": {
 		"extends": ["@commitlint/config-conventional"]
@@ -24,7 +24,6 @@
 		"@flamework/core": "catalog:prod",
 		"@rbxts/lyra": "catalog:prod",
 		"@rbxts/pretty-react-hooks": "catalog:prod",
-		"@rbxts/profile-store": "catalog:prod",
 		"@rbxts/react": "catalog:prod",
 		"@rbxts/react-roblox": "catalog:prod",
 		"@rbxts/ui-labs": "catalog:prod",

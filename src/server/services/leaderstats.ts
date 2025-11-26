@@ -2,6 +2,8 @@ import type { OnStart } from "@flamework/core";
 import { Service } from "@flamework/core";
 import { Players } from "@rbxts/services";
 
+import type { ProfileTemplate } from "./dataservice";
+
 @Service()
 export class Leaderstats implements OnStart {
 	public onStart(): void {
@@ -22,7 +24,7 @@ export class Leaderstats implements OnStart {
 		});
 	}
 
-	public UpdateLeaderstats(player: Player, stat: string, value: number): string {
+	public UpdateLeaderstats(player: Player, stat: keyof ProfileTemplate, value: number): string {
 		try {
 			const leaderstats = player.FindFirstChild("leaderstats");
 			if (leaderstats) {
