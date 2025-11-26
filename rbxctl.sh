@@ -30,7 +30,7 @@ compile() {
   rm -rf "${dist_dir:?}/"*
   mkdir -p ${out_dir}
   mkdir -p ${dist_dir}
-  npx rbxtsc
+  pnpm rbxtsc
   cp -r "${out_dir}/workspace" "${dist_dir}/workspace"
   darklua process out dist -c .darklua.json
 }
@@ -48,7 +48,6 @@ launch() {
         MINGW*|MSYS*|CYGWIN*|Windows_NT) os="Windows" ;;
         *)        os="" ;;
     esac
-
     if [[ -z "$os" ]]; then
         echo -e "Unsupported OS: $raw_os\nThis application supports only Windows and MacOS with Roblox Studio or Linux with Vinegar.\nIf you believe this is an error or want to request future support, please submit an issue here:\nhttps://github.com/swordofastrea/clicker-rewrite/issues"
         return 1
@@ -71,8 +70,15 @@ launch() {
 
 
 sync() {
-  echo "Starting Rojo and watching for changes.."
-  npx concurrently --kill-others "rbxtsc -w" "darklua process ${out_dir##*/} ${dist_dir##*/} -w -c .darklua.json" "rojo serve ${project_file}"
+    jq -r '.. | strings' "${project_file}" | while IFS= read -r s; do
+        if [[ "$s" == *"${out_dir##*/}"/* ]]; then
+            echo "Starting Rojo for dev..."
+            pnpm concurrently --kill-others "rbxtsc -w" "rojo serve ${project_file}"
+        elif [[ "$s" == *"${dist_dir##*/}"/* ]]; then
+            echo "Starting Rojo for prod..."
+            pnpm concurrently --kill-others "rbxtsc -w" "darklua process ${out_dir##*/} ${dist_dir##*/} -w -c .darklua.json" "rojo serve ${project_file}"
+        fi
+    done
 }
 
 run_all() {
