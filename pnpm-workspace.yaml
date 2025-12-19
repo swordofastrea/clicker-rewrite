@@ -34,7 +34,7 @@ catalogs:
   types:
     "@isentinel/tsconfig": 1.1.0
     "@rbxts/compiler-types": 3.0.0-types.0
-    "@rbxts/types": 1.0.894
+    "@rbxts/types": 1.0.896
     typescript: 5.9.3
 
 onlyBuiltDependencies:
